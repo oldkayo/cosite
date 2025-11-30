@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+    </style>
+    <!-- GSAP for smooth cursor tweening (lightweight) -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      defer
+    ></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSite - Home</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="brand" aria-label="Homepage">
+        <span class="logo">C</span>
+        <span class="title">CoSite</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <button
+          class="mobile-toggle"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-navigation" class="nav-list">
+          <li>
+            <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+          </li>
+          <li>
+            <a href="about.html" data-i18n="nav.about">About us</a>
+          </li>
+          <li>
+            <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
+          </li>
+          <li>
+            <a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a>
+          </li>
+          <li class="nav-cta">
+            <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
+            <a class="btn header-cta" href="discord.html" data-i18n="f3.btn"
+              >Get support</a
+            >
+            <div class="lang-switch" aria-hidden="false">
+              <button class="lang-btn" data-lang="en" aria-pressed="true">
+                EN
+              </button>
+              <button class="lang-btn" data-lang="ar" aria-pressed="false">
+                ع
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="features" aria-labelledby="features-heading">
+        <h2 id="features-heading" data-i18n="features.heading">
+          Expert Team & Education
+        </h2>
+        <p class="features-sub" data-i18n="features.sub">
+          Simplified service and training for complex technologies — courses,
+          support and guidance.
+        </p>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">👨‍💻</div>
+            <h3 data-i18n="f1.title">Expert IT Team & Mentors</h3>
+            <p data-i18n="f1.p">
+              An experienced technical team providing practical guidance and
+              personal follow-up for your projects.
+            </p>
+            <p class="muted" data-i18n="f1.muted">
+              Mentorship, code reviews, career guidance.
+            </p>
+            <a class="btn" href="ourTeam.html" data-i18n="f1.btn"
+              >Meet the team</a
+            >
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🎓</div>
+            <h3 data-i18n="f2.title">Simplifying complex tech concepts</h3>
+            <p data-i18n="f2.p">
+              Simplifying difficult topics with a clear and practical
+              educational approach with real examples.
+            </p>
+            <p class="muted" data-i18n="f2.muted">
+              Workshops, bite-sized lessons, hands-on labs.
+            </p>
+            <a class="btn" href="about.html" data-i18n="f2.btn">See how</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3 data-i18n="f3.title">Courses | Support | Guidance</h3>
+            <p data-i18n="f3.p">
+              Structured courses, technical support, and continuous guidance to
+              help you progress.
+            </p>
+            <p class="muted" data-i18n="f3.muted">
+              Courses, 1:1 support, project guidance.
+            </p>
+            <a class="btn" href="discord.html" data-i18n="f3.btn">Discord</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- <widgetbot
+  server="1383068883891650581"
+  channel="1444633092810735616"
+  width="800"
+  height="600"
+></widgetbot>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script> -->
+
+
+<script>
+  function sendToDiscord() {
+    fetch("https://discord.com/api/webhooks/1444634752098238517/bycCpJLwKSuciKT1xVHxLzAex-bzhfSOsnoXNAirxyVHJFQ1DwihtxWp0DGO0nshiX2p", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content: "🔥 New person entered your website!"
+      })
+    });
+  }
+  </script>
+  
+  <!-- <button onclick="sendToDiscord()">Test Sending</button> -->
+
+
+<div class="elfsight-app-51f52212-b81b-48a1-8ac6-f010e5df6044" data-elfsight-app-lazy></div>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo">C</span>
+              <span class="title">CoSite</span>
+            </div>
+            <p class="footer-desc" data-i18n="footer.brand-desc">
+              We teach, build, and inspire the future of Arab developers.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4 data-i18n="footer.platform">Platform</h4>
+              <ul>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+                <li>
+                  <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
+                </li>
+                <li>
+                  <a href="ourProjects.html" data-i18n="nav.projects"
+                    >Our Projects</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.resources">Resources</h4>
+              <ul>
+                <li>
+                  <a href="discord.html" data-i18n="f3.btn">Get support</a>
+                </li>
+                <li>
+                  <a href="contactus.html" data-i18n="nav.contact"
+                    >Contact us</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.connect">Connect</h4>
+              <div class="footer-social">
+                <a href="discord.html" class="social-link" aria-label="Discord">
+                  <span>💬</span> Discord
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <small
+            >&copy; <span id="year"></span> CoSite — All rights reserved</small
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/site.js" defer></script>
+  </body>
+</html>

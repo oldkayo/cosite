@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSite - Join Discord</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="brand" aria-label="Homepage">
+        <span class="logo">C</span>
+        <span class="title">CoSite</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <button
+          class="mobile-toggle"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-navigation" class="nav-list">
+          <li>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+          </li>
+          <li>
+            <a href="about.html" data-i18n="nav.about">About us</a>
+          </li>
+          <li>
+            <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
+          </li>
+          <li>
+            <a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a>
+          </li>
+          <li>
+            <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
+          </li>
+          <li class="nav-cta">
+            <a class="btn header-cta active" href="discord.html" data-i18n="f3.btn">Get support</a>
+            <div class="lang-switch" aria-hidden="false">
+              <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+              <button class="lang-btn" data-lang="ar" aria-pressed="false">ع</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="discord" class="section discord reveal-up">
+        <div class="container">
+          <div class="discord-inner">
+            <div class="discord-content">
+              <h2 data-i18n="discord.title">Join our Discord</h2>
+              <p data-i18n="discord.subtitle">
+                Join our tech community for help, courses and competitions.
+              </p>
+              <div class="discord-actions">
+                <a class="btn big glow" href="#" id="discord-invite">Join Discord</a>
+                <small class="muted" data-i18n="discord.desc">Active channels, live help, weekly events.</small>
+              </div>
+            </div>
+
+            <div class="discord-screens">
+              <img src="img/forStie/discordCo.png" alt="Discord screenshot" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo">C</span>
+              <span class="title">CoSite</span>
+            </div>
+            <p class="footer-desc" data-i18n="footer.brand-desc">
+              We teach, build, and inspire the future of Arab developers.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4 data-i18n="footer.platform">Platform</h4>
+              <ul>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+                <li><a href="ourTeam.html" data-i18n="nav.team">Our Team</a></li>
+                <li><a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.resources">Resources</h4>
+              <ul>
+                <li><a href="discord.html" data-i18n="f3.btn">Get support</a></li>
+                <li><a href="contactus.html" data-i18n="nav.contact">Contact us</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.connect">Connect</h4>
+              <div class="footer-social">
+                <a href="discord.html" class="social-link" aria-label="Discord">
+                  <span>💬</span> Discord
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <small>&copy; <span id="year"></span> CoSite — All rights reserved</small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/site.js" defer></script>
+  </body>
+</html>

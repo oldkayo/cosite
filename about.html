@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSite - About Us</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="brand" aria-label="Homepage">
+        <span class="logo">C</span>
+        <span class="title">CoSite</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <button
+          class="mobile-toggle"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-navigation" class="nav-list">
+          <li>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+          </li>
+          <li>
+            <a href="about.html" class="active" data-i18n="nav.about">About us</a>
+          </li>
+          <li>
+            <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
+          </li>
+          <li>
+            <a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a>
+          </li>
+          <li class="nav-cta">
+            <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
+            <a class="btn header-cta" href="discord.html" data-i18n="f3.btn">Get support</a>
+            <div class="lang-switch" aria-hidden="false">
+              <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+              <button class="lang-btn" data-lang="ar" aria-pressed="false">ع</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="about" class="section about reveal-up">
+        <div class="container grid-two">
+          <div class="card">
+            <h2 data-i18n="about.title">About Us</h2>
+            <p data-i18n="about.desc">
+              We are university students studying IT — passionate about
+              teaching, mentoring, and building real-world projects together.
+            </p>
+
+            <div class="about-list">
+              <div>
+                <h4 data-i18n="about.vision.title">Vision</h4>
+                <p data-i18n="about.vision.p">
+                  Make quality practical tech education accessible for every
+                  student.
+                </p>
+              </div>
+              <div>
+                <h4 data-i18n="about.mission.title">Mission</h4>
+                <p data-i18n="about.mission.p">
+                  Build hands-on learning paths and supportive community
+                  environments.
+                </p>
+              </div>
+              <div>
+                <h4 data-i18n="about.goals.title">Goals</h4>
+                <ul>
+                  <li data-i18n="about.goals.1">
+                    Practical project-based learning
+                  </li>
+                  <li data-i18n="about.goals.2">Career-ready mentorship</li>
+                  <li data-i18n="about.goals.3">Inclusive community support</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="values" data-i18n="about.values">
+              Team values: Collaboration — Innovation — Support — Learning
+            </div>
+          </div>
+
+          <div class="card photo-grid">
+            <h3 data-i18n="about.teamHeading">Our group</h3>
+            <div class="group-photo">
+              <img
+                src="img/forStie/teamCard.png"
+                alt="Team photo"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo">C</span>
+              <span class="title">CoSite</span>
+            </div>
+            <p class="footer-desc" data-i18n="footer.brand-desc">
+              We teach, build, and inspire the future of Arab developers.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4 data-i18n="footer.platform">Platform</h4>
+              <ul>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+                <li><a href="ourTeam.html" data-i18n="nav.team">Our Team</a></li>
+                <li><a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.resources">Resources</h4>
+              <ul>
+                <li><a href="discord.html" data-i18n="f3.btn">Get support</a></li>
+                <li><a href="contactus.html" data-i18n="nav.contact">Contact us</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-i18n="footer.connect">Connect</h4>
+              <div class="footer-social">
+                <a href="discord.html" class="social-link" aria-label="Discord">
+                  <span>💬</span> Discord
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <small>&copy; <span id="year"></span> CoSite — All rights reserved</small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/site.js" defer></script>
+  </body>
+</html>
