@@ -1,0 +1,22 @@
+[
+  {
+    "id": "t1",
+    "title_en": "New Member: Ahmad joined our team",
+    "title_ar": "انضمام أحمد لقسم التصميم وإدارة الهوية البصرية",
+    "desc_en": "Ahmed joined the Design and Visual Identity Management Department.",
+    "desc_ar": "أحمد انضم للفريق لقسم التصميم وإدارة الهوية البصرية.",
+    "date": "2025-12-01",
+    "href": "ourTeam.html#member-ahmad",
+    "img": "img/team/ahmad.jpg"
+  },
+  {
+    "id": "t2",
+    "title_en": "New Member: Mahmoud joined our team",
+    "title_ar": "انضمام محمود لقسم التصميم وإدارة الهوية البصرية",
+    "desc_en": "Mahmoud joined the Design and Visual Identity Management Department.",
+    "desc_ar": "محمود انضم للفريق لقسم التصميم وإدارة الهوية البصرية.",
+    "date": "2025-12-01",
+    "href": "ourTeam.html#member-mahmoud",
+    "img": "img/team/mahmoud.jpg"
+  }
+]

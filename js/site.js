@@ -76,7 +76,16 @@
       "p2.desc":
         "An intelligent scheduling assistant using heuristics and ML to optimize study sessions.",
       "p3.title": "Future project slot",
+      "latest.heading": "Latest updates",
+      "latest.sub": "Recent projects and activity on the site.",
+      "latest.empty": "No updates yet — check back soon.",
+      "latest.viewAll": "View all projects",
       "p3.desc": "We’ll add more projects here — check back soon.",
+      "teamfeed.heading": "Latest — Team",
+      "teamfeed.sub": "Recent team news and changes.",
+      "teamfeed.empty": "No team updates yet.",
+      "teamfeed.new": "New",
+      "teamfeed.viewAll": "View all team",
       "contact.title": "Contact Us",
       "contact.subtitle":
         "Have a question, need help, or want mentorship? Send us a message.",
@@ -170,7 +179,16 @@
       "p2.title": "منظّم الدراسة الذكي",
       "p2.desc": "مساعد جدولة ذكي يعتمد ML لتنظيم جلسات الدراسة وتحسينها.",
       "p3.title": "مساحة للمشاريع القادمة",
+      "latest.heading": "آخر التحديثات",
+      "latest.sub": "أحدث المشاريع والنشاطات على الموقع.",
+      "latest.empty": "لا توجد تحديثات بعد — تفقدنا لاحقًا.",
+      "latest.viewAll": "عرض جميع المشاريع",
       "p3.desc": "سوف نضيف مشاريع جديدة هنا — تفقد الموقع لاحقًا.",
+      "teamfeed.heading": "آخر أخبار الفريق",
+      "teamfeed.sub": "أحدث الأخبار والتغييرات في الفريق.",
+      "teamfeed.empty": "لا توجد تحديثات للفريق حالياً.",
+      "teamfeed.new": "جديد",
+      "teamfeed.viewAll": "عرض الفريق",
       "contact.title": "اتصل بنا",
       "contact.subtitle":
         "هل لديك سؤال؟ تريد إرشادًا أم دعمًا؟ أرسِل رسالة لنا.",
@@ -293,6 +311,194 @@
       );
       reveals.forEach((r) => io.observe(r));
     } else reveals.forEach((r) => r.classList.add("show"));
+
+    // Latest feed: team updates (anything new about the team)
+    (function loadTeamUpdates() {
+      const feedEl = document.getElementById("team-feed");
+      if (!feedEl) return;
+
+      function formatDateT(dateStr, lang) {
+        try {
+          const d = new Date(dateStr);
+          return d.toLocaleDateString(
+            lang || document.documentElement.lang || "en",
+            {
+              month: "short",
+              day: "numeric",
+            }
+          );
+        } catch (e) {
+          return dateStr;
+        }
+      }
+
+      function renderTeam(items) {
+        if (!items || items.length === 0) {
+          feedEl.innerHTML = `<div class="feed-empty muted" data-i18n="teamfeed.empty">No team updates yet.</div>`;
+          return;
+        }
+
+        items.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const max = 4;
+        const slice = items.slice(0, max);
+        const lang = document.documentElement.lang || "en";
+
+        const NEW_WINDOW_MS = 14 * 24 * 60 * 60 * 1000; // 14 days
+        const html = `<div class="team-updates-list">${slice
+          .map((it) => {
+            const isNew =
+              Date.now() - new Date(it.date).getTime() <= NEW_WINDOW_MS;
+            return `
+            <article class="team-update" data-new="${isNew}" tabindex="0">
+              <a class="team-update-link" href="${it.href || "#"}">
+                ${
+                  it.img
+                    ? `<img src="${it.img}" alt="${
+                        it["title_" + lang] || it.title_en
+                      }" class="team-update-thumb"/>`
+                    : ""
+                }
+                <div class="team-update-body">
+                  <div class="team-update-meta"><time datetime="${
+                    it.date
+                  }">${formatDateT(it.date, lang)}</time></div>
+                  <div class="team-update-title">${
+                    it["title_" + lang] || it.title_en
+                  } ${
+              isNew
+                ? `<span class="badge new" data-i18n="teamfeed.new">New</span>`
+                : ""
+            }</div>
+                  <div class="team-update-desc muted">${
+                    it["desc_" + lang] || it.desc_en
+                  }</div>
+                </div>
+              </a>
+            </article>
+          `;
+          })
+          .join("")}</div>`;
+
+        feedEl.innerHTML = html;
+      }
+
+      fetch("data/team-updates.json")
+        .then((r) => {
+          if (!r.ok) throw new Error("no data");
+          return r.json();
+        })
+        .then((data) => renderTeam(data))
+        .catch(() => {
+          const fallback = [
+            {
+              id: "t1",
+              title_en: translations.en["team.m1.name"] + " — New activity",
+              title_ar: translations.ar["team.m1.name"] + " — نشاط جديد",
+              desc_en:
+                translations.en["team.m1.name"] + " announced a new workshop.",
+              desc_ar: translations.ar["team.m1.name"] + " أعلن عن ورشة جديدة.",
+              date: new Date().toISOString().slice(0, 10),
+              href: "ourTeam.html",
+            },
+          ];
+          renderTeam(fallback);
+        });
+    })();
+
+    // Latest feed: load updates from data/updates.json and render
+    (function loadLatestUpdates() {
+      const feedEl = document.getElementById("latest-feed");
+      if (!feedEl) return;
+
+      function formatDate(dateStr, lang) {
+        try {
+          const d = new Date(dateStr);
+          return d.toLocaleDateString(
+            lang || document.documentElement.lang || "en",
+            {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            }
+          );
+        } catch (e) {
+          return dateStr;
+        }
+      }
+
+      function render(items) {
+        if (!items || items.length === 0) {
+          feedEl.innerHTML = `<div class="feed-empty muted" data-i18n="latest.empty">No updates yet — check back soon.</div>`;
+          return;
+        }
+
+        // sort newest first by date, slice to show max 5
+        items.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const max = 5;
+        const slice = items.slice(0, max);
+
+        const lang = document.documentElement.lang || "en";
+
+        const html = `
+          <div class="feed-grid">
+            ${slice
+              .map(
+                (it) => `
+                <article class="feed-item" tabindex="0">
+                  <a href="${it.href || "#"}" class="feed-link" aria-label="${
+                  it["title_" + lang] || it.title_en
+                }">
+                    ${
+                      it.img
+                        ? `<img src="${it.img}" class="feed-thumb" alt="${
+                            it["title_" + lang] || it.title_en
+                          }" />`
+                        : ""
+                    }
+                    <div class="feed-body">
+                      <div class="feed-meta"><time datetime="${
+                        it.date
+                      }">${formatDate(it.date, lang)}</time></div>
+                      <h4 class="feed-title">${
+                        it["title_" + lang] || it.title_en
+                      }</h4>
+                      <p class="feed-desc muted">${
+                        it["desc_" + lang] || it.desc_en
+                      }</p>
+                    </div>
+                  </a>
+                </article>
+              `
+              )
+              .join("")}
+          </div>`;
+
+        feedEl.innerHTML = html;
+      }
+
+      // Try to fetch JSON; fallback to built-in sample if that fails
+      fetch("data/updates.json")
+        .then((r) => {
+          if (!r.ok) throw new Error("no data");
+          return r.json();
+        })
+        .then((data) => render(data))
+        .catch(() => {
+          // fallback: search for a small set of project previews embedded in translations
+          const fallback = [
+            {
+              id: "p1",
+              title_en: translations.en["p1.title"],
+              title_ar: translations.ar["p1.title"],
+              desc_en: translations.en["p1.desc"],
+              desc_ar: translations.ar["p1.desc"],
+              date: new Date().toISOString().slice(0, 10),
+              href: "ourProjects.html",
+            },
+          ];
+          render(fallback);
+        });
+    })();
 
     // contact form
     const form = document.getElementById("contact-form");

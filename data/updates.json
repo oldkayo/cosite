@@ -1,0 +1,32 @@
+[
+  {
+    "id": "p1",
+    "title_en": "Campus e-Learning Portal",
+    "title_ar": "منصة تعليم إلكتروني للجامعة",
+    "desc_en": "A lightweight LMS to host short practical courses and track student progress.",
+    "desc_ar": "نظام خفيف لاستضافة دورات قصيرة عملية وتتبع تقدّم الطلاب.",
+    "date": "2025-11-12",
+    "href": "ourProjects.html#campus-lms",
+    "img": "img/forStie/teamCard.png"
+  },
+  {
+    "id": "p2",
+    "title_en": "Smart Study Planner",
+    "title_ar": "منظّم الدراسة الذكي",
+    "desc_en": "An intelligent scheduling assistant that helps students plan study sessions.",
+    "desc_ar": "مساعد جدولة ذكي يساعد الطلاب على تنظيم جلسات الدراسة.",
+    "date": "2025-10-03",
+    "href": "ourProjects.html#study-planner",
+    "img": "img/forStie/teamCard.png"
+  },
+  {
+    "id": "p3",
+    "title_en": "New UI Kit: Comix Components",
+    "title_ar": "حزمة واجهات جديدة: عناصر Comix",
+    "desc_en": "A small collection of reusable UI components we built for future projects.",
+    "desc_ar": "مجموعة عناصر واجهة قابلة لإعادة الاستخدام لبناء المشاريع المستقبلية.",
+    "date": "2025-12-01",
+    "href": "ourProjects.html#comix-ui",
+    "img": "img/forStie/teamCard.png"
+  }
+]
