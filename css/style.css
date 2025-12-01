@@ -655,22 +655,121 @@ body::before {
 
 /* Header */
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: transparent;
-  border-bottom: 1px solid var(--border);
-}
-/* Keep header visible while scrolling */
-.site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1100;
-  background: rgba(15, 22, 26, 0.75);
+  background: rgba(15, 22, 26, 0.95);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: 0 6px 24px rgba(2, 6, 23, 0.35);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  /* Force LTR direction for header in both LTR and RTL modes */
+  direction: ltr;
+  text-align: left;
+}
+
+/* Ensure brand stays on the left */
+.brand {
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Push everything else to the right */
+}
+
+/* Navigation list */
+.nav-list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Navigation items */
+.nav-list > li {
+  margin: 0 10px;
+  position: relative;
+}
+
+/* Dropdown Menu */
+.has-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(15, 22, 26, 0.98);
+  min-width: 200px;
+  border-radius: 8px;
+  padding: 10px 0;
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+}
+
+.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 20px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(47, 164, 255, 0.1);
+  color: var(--text);
+  padding-left: 25px;
+}
+
+.dropdown-toggle::after {
+  content: '▼';
+  font-size: 0.6em;
+  margin-left: 5px;
+  vertical-align: middle;
+  opacity: 0.7;
+  transition: transform 0.3s ease;
+}
+
+.has-dropdown:hover .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Language switcher container */
+.nav-cta {
+  margin-left: 20px; /* Add space between nav items and language switcher */
+}
+
+/* Add padding to the body to account for fixed header */
+body {
+  padding-top: 70px; /* Adjust this value based on your header height */
+}
+
+/* Adjust the first section's padding to prevent content from being hidden behind the header */
+main > section:first-child {
+  padding-top: 20px;
 }
 .brand {
   display: flex;
@@ -680,30 +779,78 @@ body::before {
   color: inherit;
 }
 
-/* language switcher (EN / AR) */
+/* Language Switcher */
 .lang-switch {
-  display: inline-flex;
-  gap: 6px;
+  display: flex;
+  gap: 8px;
   align-items: center;
+  background: rgba(47, 164, 255, 0.06);
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid rgba(47, 164, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
+
 .lang-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: none;
   color: var(--muted);
-  padding: 6px 8px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 44px;
+  text-align: center;
 }
-.lang-btn.active,
-.lang-btn[aria-pressed="true"] {
-  background: linear-gradient(
-    90deg,
-    rgba(47, 164, 255, 0.12),
-    rgba(47, 164, 255, 0.06)
-  );
+
+.lang-btn:hover {
   color: var(--text);
-  border-color: rgba(47, 164, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lang-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(47, 164, 255, 0.3);
+}
+
+.lang-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(47, 164, 255, 0.2);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.lang-btn[aria-pressed="true"] {
+  animation: pulse 0.3s ease;
+}
+
+[lang="ar"] .lang-btn {
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .lang-switch {
+    padding: 1px;
+    gap: 4px;
+  }
+  
+  .lang-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    min-width: 38px;
+  }
 }
 .brand .logo {
   width: 40px;
@@ -1526,11 +1673,85 @@ nav {
   box-shadow: 0 8px 36px rgba(47, 164, 255, 0.25);
   transform: translateY(-2px);
 }
+/* Discord Widget Styles */
 .discord-screens {
+  position: relative;
   width: 100%;
   max-width: 800px;
-  margin-top: 8px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(15, 22, 26, 0.6);
+  backdrop-filter: blur(10px);
 }
+
+.discord-screens:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.discord-screens::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2fa4ff, #9c42f5);
+  z-index: 2;
+}
+
+.discord-widget-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60%; /* Aspect ratio for responsive height */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.discord-widget {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+/* Adjust widget size on different screens */
+@media (max-width: 992px) {
+  .discord-widget-container {
+    padding-bottom: 75%; /* Slightly taller on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .discord-widget-container {
+    padding-bottom: 90%; /* Taller on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .discord-widget-container {
+    padding-bottom: 120%; /* Taller on mobile */
+  }
+  
+  .discord-screens {
+    margin: 0 -15px;
+    width: calc(100% + 30px);
+    border-radius: 0;
+  }
+  
+  .discord-screens::before {
+    border-radius: 0;
+  }
+}
+
 .discord-screens img {
   width: 100%;
   height: auto;
@@ -1540,6 +1761,12 @@ nav {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.discord-screens img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* FOOTER */
