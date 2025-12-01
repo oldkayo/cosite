@@ -68,20 +68,25 @@
 
         <div class="grid-two" style="margin-top: 24px">
           <div class="card">
-            <form id="contact-form" class="contact-form">
+            <form action="https://formspree.io/f/mrbnkgvw" method="POST" class="contact-form">
+              <input type="hidden" name="_next" value="thank-you.html">
               <label>
                 <span data-i18n="contact.form.name">Name</span>
-                <input type="text" name="name" required />
+                <input type="text" name="name" required>
               </label>
               <label>
-                <span data-i18n="contact.form.email">Email</span>
-                <input type="email" name="email" required />
+                <span>Email</span>
+                <input type="email" name="email" required>
               </label>
               <label>
-                <span data-i18n="contact.form.msg">Message</span>
+                <span data-i18n="contact.form.phone">Phone Number</span>
+                <input type="tel" name="phone" required>
+              </label>
+              <label>
+                <span>Message</span>
                 <textarea name="message" rows="6" required></textarea>
               </label>
-              <button type="submit" class="btn" data-i18n="contact.form.send">
+              <button type="submit" class="btn">
                 Send Message
               </button>
               <p id="contact-feedback" style="margin-top: 12px; color: var(--accent)"></p>
