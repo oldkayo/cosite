@@ -12,6 +12,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ComixDev - Home</title>
+    <link rel="icon" href="img/logo/comixLogo.png" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -128,20 +129,6 @@
 ></widgetbot>
 <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script> -->
 
-      <script>
-        function sendToDiscord() {
-          fetch(
-            "https://discord.com/api/webhooks/1444634752098238517/bycCpJLwKSuciKT1xVHxLzAex-bzhfSOsnoXNAirxyVHJFQ1DwihtxWp0DGO0nshiX2p",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                content: "🔥 New person entered your website!",
-              }),
-            }
-          );
-        }
-      </script>
 
       <!-- <button onclick="sendToDiscord()">Test Sending</button> -->
 
