@@ -4,6 +4,58 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
     </style>
+
+    <style>
+      .coming-soon {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .coming-soon h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+      }
+
+      .coming-soon p {
+        font-size: 1.2rem;
+        color: var(--muted);
+        max-width: 600px;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(47, 164, 255, 0.2);
+        border-radius: 50%;
+        border-top-color: var(--accent);
+        animation: spin 1s ease-in-out infinite;
+        margin: 2rem 0;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .coming-soon h1 {
+          font-size: 2rem;
+        }
+
+        .coming-soon p {
+          font-size: 1rem;
+        }
+      }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ComixDev - Our Projects</title>
@@ -40,13 +92,16 @@
           <li>
             <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
           </li>
-          <li class="has-dropdown">
-            <a href="#" class="dropdown-toggle active" data-i18n="nav.works">Our Works</a>
-            <ul class="dropdown-menu">
-              <li><a href="ourProjects.html" class="active" data-i18n="nav.projects">Our Projects</a></li>
-              <li><a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a></li>
-            </ul>
+
+          <li>
+            <a href="ourProjects.html" class="active" data-i18n="nav.projects"
+              >Our Projects</a
+            >
           </li>
+          <li>
+            <a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a>
+          </li>
+
           <li>
             <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
           </li>
@@ -64,64 +119,15 @@
       </nav>
     </header>
 
-    <main class="container">
-      <section id="projects" class="section projects reveal-up">
-        <div class="container">
-          <h2 data-i18n="projects.title">Our Projects</h2>
-          <p class="muted" data-i18n="projects.subtitle">
-            Student-built projects, demos and case studies.
-          </p>
-
-          <div class="projects-grid" style="margin-top: 24px">
-            <article id="campus-lms" class="project-card" tabindex="0">
-              <img src="img/forStie/teamCard.png" alt="Campus LMS screenshot" />
-              <div class="project-body">
-                <h4 data-i18n="p1.title">Campus e-Learning Portal</h4>
-                <p class="muted" data-i18n="p1.desc">
-                  A lightweight LMS for hosting short practical courses and
-                  tracking student progress.
-                </p>
-                <div class="project-actions">
-                  <a class="btn" href="#">Demo</a>
-                  <a class="btn" href="#">Read</a>
-                </div>
-              </div>
-            </article>
-
-            <article id="study-planner" class="project-card" tabindex="0">
-              <img
-                src="img/forStie/teamCard.png"
-                alt="Smart Planner screenshot"
-              />
-              <div class="project-body">
-                <h4 data-i18n="p2.title">Smart Study Planner</h4>
-                <p class="muted" data-i18n="p2.desc">
-                  An intelligent scheduling assistant using heuristics and ML to
-                  optimize study sessions.
-                </p>
-                <div class="project-actions">
-                  <a class="btn" href="#">Demo</a>
-                  <a class="btn" href="#">Read</a>
-                </div>
-              </div>
-            </article>
-
-            <article id="comix-ui" class="project-card" tabindex="0">
-              <img src="img/forStie/teamCard.png" alt="Comix UI screenshot" />
-              <div class="project-body">
-                <h4>New UI Kit: Comix Components</h4>
-                <p class="muted">
-                  A small collection of reusable UI components we built for
-                  future projects.
-                </p>
-                <div class="project-actions">
-                  <a class="btn" href="#">Demo</a>
-                  <a class="btn" href="#">Read</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
+   <main class="container">
+      <section class="section coming-soon">
+        <h1>Our Projects</h1>
+        <p>
+          We're working on something amazing for you! Our academy is currently
+          under development.
+        </p>
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Stay tuned for exciting projects coming soon!</p>
       </section>
     </main>
 
