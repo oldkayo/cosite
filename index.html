@@ -46,8 +46,12 @@
           <li>
             <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
           </li>
-          <li><a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a></li>
-          <li><a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a></li>
+          <li>
+            <a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a>
+          </li>
+          <li>
+            <a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a>
+          </li>
           <li>
             <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
           </li>
@@ -120,26 +124,42 @@
       </section>
 
       <!-- Latest team updates (something new about the team) -->
-      <section id="latest-team" class="section latest-team reveal-up" aria-labelledby="latest-team-heading">
+      <section
+        id="latest-team"
+        class="section latest-team reveal-up"
+        aria-labelledby="latest-team-heading"
+      >
         <div class="container">
-          <h2 id="latest-team-heading" data-i18n="teamfeed.heading">Latest — Team</h2>
-          <p class="muted" data-i18n="teamfeed.sub">Recent team news and changes.</p>
+          <h2 id="latest-team-heading" data-i18n="teamfeed.heading">
+            Latest — Team
+          </h2>
+          <p class="muted" data-i18n="teamfeed.sub">
+            Recent team news and changes.
+          </p>
 
           <div id="team-feed" class="team-feed" aria-live="polite">
             <div class="feed-loading muted">Loading…</div>
           </div>
 
           <div class="section-cta">
-            <a href="ourTeam.html" class="btn" data-i18n="teamfeed.viewAll">View all team</a>
+            <a href="ourTeam.html" class="btn" data-i18n="teamfeed.viewAll"
+              >View all team</a
+            >
           </div>
         </div>
       </section>
 
       <!-- Latest updates / feed -->
-      <section id="latest-updates" class="section latest-updates reveal-up" aria-labelledby="latest-heading">
+      <section
+        id="latest-updates"
+        class="section latest-updates reveal-up"
+        aria-labelledby="latest-heading"
+      >
         <div class="container">
           <h2 id="latest-heading" data-i18n="latest.heading">Latest updates</h2>
-          <p class="muted" data-i18n="latest.sub">Recent projects and activity on the site.</p>
+          <p class="muted" data-i18n="latest.sub">
+            Recent projects and activity on the site.
+          </p>
 
           <div id="latest-feed" class="latest-feed" aria-live="polite">
             <!-- JS will populate latest feed items here -->
@@ -147,7 +167,47 @@
           </div>
 
           <div class="section-cta">
-            <a href="ourProjects.html" class="btn" data-i18n="latest.viewAll">View all projects</a>
+            <a href="ourProjects.html" class="btn" data-i18n="latest.viewAll"
+              >View all projects</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Latest Reviews Section -->
+      <section
+        id="latest-reviews"
+        class="section latest-reviews reveal-up"
+        aria-labelledby="reviews-heading"
+      >
+        <div class="container">
+          <h2 id="reviews-heading" data-i18n="reviews.heading">
+            Student Reviews
+          </h2>
+          <p class="muted" data-i18n="reviews.sub">
+            What our students say about their learning experience.
+          </p>
+
+          <div class="reviews-intro">
+            <a href="reviews.html">
+            <button
+              id="home-review-btn"
+              class="btn btn-primary"
+              data-i18n="reviews.leaveReview"
+            >
+              Leave a Review
+            </button>
+            </a>
+          </div>
+
+          <div id="home-reviews-feed" class="reviews-feed" aria-live="polite">
+            <div class="feed-loading muted">Loading reviews…</div>
+          </div>
+
+          <div class="section-cta">
+            <a href="reviews.html" class="btn" data-i18n="reviews.viewAll">
+              View All Reviews
+            </a>
           </div>
         </div>
       </section>
@@ -157,9 +217,10 @@
         data-elfsight-app-lazy
       ></div>
     </main>
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
       <div class="footer-container">
         <div class="footer-content">
+          <!-- Brand Section -->
           <div class="footer-brand">
             <div class="footer-logo">
               <img
@@ -174,8 +235,9 @@
             </p>
           </div>
 
+          <!-- Links Section -->
           <div class="footer-links">
-            <div class="footer-column">
+            <nav class="footer-column" aria-label="Platform">
               <h4 data-i18n="footer.platform">Platform</h4>
               <ul>
                 <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -188,55 +250,64 @@
                     >Our Projects</a
                   >
                 </li>
+                <li>
+                  <a href="ourAcademy.html" data-i18n="nav.courses"
+                    >Our Academy</a
+                  >
+                </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="footer-column">
+            <nav class="footer-column" aria-label="Resources">
               <h4 data-i18n="footer.resources">Resources</h4>
               <ul>
-                <li><a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a></li>
-                <li><a href="contactus.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="ourProjects.html">Case Studies</a></li>
+                <li><a href="ourAcademy.html">Learning Resources</a></li>
+                <li><a href="ourTeam.html">Blog & Insights</a></li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="footer-column">
+            <nav class="footer-column" aria-label="Connect">
               <h4 data-i18n="footer.connect">Connect With Us</h4>
-              <div class="footer-social">
-                <a href="https://discord.gg/y9KWWwpeCj" target="_blank" class="social-link" aria-label="Discord">
-                  <i class="fab fa-discord"></i>
-                  <span>Discord</span>
-                </a>
-                <a href="https://www.instagram.com/your_instagram" target="_blank" class="social-link" aria-label="Instagram">
-                  <i class="fab fa-instagram"></i>
-                  <span>Instagram</span>
-                </a>
-                <a href="https://www.linkedin.com/company/your_linkedin" target="_blank" class="social-link" aria-label="LinkedIn">
-                  <i class="fab fa-linkedin"></i>
-                  <span>LinkedIn</span>
-                </a>
-                <a href="https://twitter.com/your_twitter" target="_blank" class="social-link" aria-label="Twitter">
-                  <i class="fab fa-twitter"></i>
-                  <span>Twitter</span>
-                </a>
-              </div>
+              <ul class="footer-social">
+                <li>
+                  <a
+                    href="./contactus.html"
+                    class="social-link"
+                    aria-label="contact us"
+                    >Contact Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="ourTeam.html"
+                    class="social-link"
+                    aria-label="view team"
+                    >View Team</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./contactus.html"
+                    class="social-link"
+                    aria-label="get in touch"
+                    >Get in Touch</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
 
-              <div class="section-cta">
-                <a href="ourTeam.html" class="btn" data-i18n="teamfeed.viewAll">View all team</a>
-                </a>
-              </div>
-            </div>
-
-          
-
+        <!-- Bottom Section -->
         <div class="footer-bottom">
-          <small
-            >&copy; <span id="year"></span> ComixDev — All rights
-            reserved</small
-          >
+          <p>&copy; <span id="year"></span> ComixDev. All rights reserved.</p>
+          <p class="footer-tagline">Empowering Arab developers worldwide</p>
         </div>
       </div>
     </footer>
 
     <script src="js/site.js" defer></script>
+    <script src="js/reviews.js" defer></script>
   </body>
 </html>

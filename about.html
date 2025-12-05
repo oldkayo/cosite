@@ -35,13 +35,19 @@
             <a href="index.html" data-i18n="nav.home">Home</a>
           </li>
           <li>
-            <a href="about.html" class="active" data-i18n="nav.about">About us</a>
+            <a href="about.html" class="active" data-i18n="nav.about"
+              >About us</a
+            >
           </li>
           <li>
             <a href="ourTeam.html" data-i18n="nav.team">Our Team</a>
           </li>
-          <li><a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a></li>
-          <li><a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a></li>
+          <li>
+            <a href="ourProjects.html" data-i18n="nav.projects">Our Projects</a>
+          </li>
+          <li>
+            <a href="ourAcademy.html" data-i18n="nav.courses">Our Academy</a>
+          </li>
           <li>
             <a href="contactus.html" data-i18n="nav.contact">Contact us</a>
           </li>
@@ -111,9 +117,10 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
       <div class="footer-container">
         <div class="footer-content">
+          <!-- Brand Section -->
           <div class="footer-brand">
             <div class="footer-logo">
               <img
@@ -128,8 +135,9 @@
             </p>
           </div>
 
+          <!-- Links Section -->
           <div class="footer-links">
-            <div class="footer-column">
+            <nav class="footer-column" aria-label="Platform">
               <h4 data-i18n="footer.platform">Platform</h4>
               <ul>
                 <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -142,39 +150,59 @@
                     >Our Projects</a
                   >
                 </li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-i18n="footer.resources">Resources</h4>
-              <ul>
                 <li>
-                  <a href="discord.html" data-i18n="f3.btn">Get support</a>
-                </li>
-                <li>
-                  <a href="contactus.html" data-i18n="nav.contact"
-                    >Contact us</a
+                  <a href="ourAcademy.html" data-i18n="nav.courses"
+                    >Our Academy</a
                   >
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div class="footer-column">
-              <h4 data-i18n="footer.connect">Connect</h4>
-              <div class="footer-social">
-                <a href="discord.html" class="social-link" aria-label="Discord">
-                  <span>💬</span> Discord
-                </a>
-              </div>
-            </div>
+            <nav class="footer-column" aria-label="Resources">
+              <h4 data-i18n="footer.resources">Resources</h4>
+              <ul>
+                <li><a href="ourProjects.html">Case Studies</a></li>
+                <li><a href="ourAcademy.html">Learning Resources</a></li>
+                <li><a href="ourTeam.html">Blog & Insights</a></li>
+              </ul>
+            </nav>
+
+            <nav class="footer-column" aria-label="Connect">
+              <h4 data-i18n="footer.connect">Connect With Us</h4>
+              <ul class="footer-social">
+                <li>
+                  <a
+                    href="./contactus.html"
+                    class="social-link"
+                    aria-label="contact us"
+                    >Contact Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="ourTeam.html"
+                    class="social-link"
+                    aria-label="view team"
+                    >View Team</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./contactus.html"
+                    class="social-link"
+                    aria-label="get in touch"
+                    >Get in Touch</a
+                  >
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
 
+        <!-- Bottom Section -->
         <div class="footer-bottom">
-          <small
-            >&copy; <span id="year"></span> ComixDev — All rights
-            reserved</small
-          >
+          <p>&copy; <span id="year"></span> ComixDev. All rights reserved.</p>
+          <p class="footer-tagline">Empowering Arab developers worldwide</p>
         </div>
       </div>
     </footer>

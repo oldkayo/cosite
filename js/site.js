@@ -117,6 +117,24 @@
       "footer.connect": "Connect",
       "footer.privacy": "Privacy",
       "footer.terms": "Terms",
+      // reviews
+      "reviews.heading": "Student Reviews",
+      "reviews.subtitle":
+        "What our students say about their learning experience",
+      "reviews.addReview": "Share Your Feedback",
+      "reviews.leaveReview": "Leave a Review",
+      "reviews.allReviews": "All Reviews",
+      "reviews.viewAll": "View All Reviews",
+      "reviews.filterAll": "All",
+      "reviews.filter5": "5 Stars",
+      "reviews.filter4": "4+ Stars",
+      "reviews.filter3": "3+ Stars",
+      "reviews.submitForm": "Submit Your Review",
+      "reviews.form.name": "Your Name",
+      "reviews.form.email": "Email (optional)",
+      "reviews.form.rating": "Rating",
+      "reviews.form.message": "Your Review",
+      "reviews.form.submit": "Submit Review",
     },
     ar: {
       "nav.home": "الرئيسية",
@@ -219,6 +237,23 @@
       "footer.connect": "تواصل",
       "footer.privacy": "الخصوصية",
       "footer.terms": "الشروط",
+      // reviews
+      "reviews.heading": "تقييمات الطلاب",
+      "reviews.subtitle": "ما يقوله طلابنا عن تجربتهم التعليمية",
+      "reviews.addReview": "شارك تقييمك",
+      "reviews.leaveReview": "اترك تقييماً",
+      "reviews.allReviews": "جميع التقييمات",
+      "reviews.viewAll": "عرض جميع التقييمات",
+      "reviews.filterAll": "الكل",
+      "reviews.filter5": "5 نجوم",
+      "reviews.filter4": "4 نجوم فما فوق",
+      "reviews.filter3": "3 نجوم فما فوق",
+      "reviews.submitForm": "أرسِل تقييمك",
+      "reviews.form.name": "اسمك",
+      "reviews.form.email": "البريد الإلكتروني (اختياري)",
+      "reviews.form.rating": "التقييم",
+      "reviews.form.message": "تقييمك",
+      "reviews.form.submit": "إرسال التقييم",
       "discord.title": "انضم إلى خادمنا على ديسكورد",
       "discord.subtitle": "انضم لمجتمع التقنيين للدعم، الدورات والمسابقات.",
       "discord.desc": "قنوات نشطة، دعم مباشر، وفعاليات أسبوعية.",
@@ -863,32 +898,36 @@
   });
 
   // Mobile Navigation
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const navList = document.querySelector('.nav-list');
-  const dropdownToggles = document.querySelectorAll('.has-dropdown .dropdown-toggle');
-  
+  const mobileToggle = document.querySelector(".mobile-toggle");
+  const navList = document.querySelector(".nav-list");
+  const dropdownToggles = document.querySelectorAll(
+    ".has-dropdown .dropdown-toggle"
+  );
+
   // Toggle mobile menu
   if (mobileToggle && navList) {
-    mobileToggle.addEventListener('click', function() {
-      navList.classList.toggle('show');
-      this.setAttribute('aria-expanded', 
-        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+    mobileToggle.addEventListener("click", function () {
+      navList.classList.toggle("show");
+      this.setAttribute(
+        "aria-expanded",
+        this.getAttribute("aria-expanded") === "true" ? "false" : "true"
       );
     });
   }
 
   // Handle dropdown toggles on mobile
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', function(e) {
-      if (window.innerWidth <= 768) { // Only for mobile
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
+        // Only for mobile
         e.preventDefault();
         const parent = this.parentElement;
-        parent.classList.toggle('active');
-        
+        parent.classList.toggle("active");
+
         // Close other open dropdowns
-        dropdownToggles.forEach(otherToggle => {
+        dropdownToggles.forEach((otherToggle) => {
           if (otherToggle !== this) {
-            otherToggle.parentElement.classList.remove('active');
+            otherToggle.parentElement.classList.remove("active");
           }
         });
       }
@@ -896,11 +935,11 @@
   });
 
   // Close dropdowns when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav-list') && !e.target.closest('.mobile-toggle')) {
-      if (navList) navList.classList.remove('show');
-      document.querySelectorAll('.has-dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".nav-list") && !e.target.closest(".mobile-toggle")) {
+      if (navList) navList.classList.remove("show");
+      document.querySelectorAll(".has-dropdown").forEach((dropdown) => {
+        dropdown.classList.remove("active");
       });
     }
   });
@@ -908,12 +947,12 @@
   // Handle window resize
   function handleResize() {
     if (window.innerWidth > 768 && navList) {
-      navList.classList.remove('show');
-      document.querySelectorAll('.has-dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
+      navList.classList.remove("show");
+      document.querySelectorAll(".has-dropdown").forEach((dropdown) => {
+        dropdown.classList.remove("active");
       });
     }
   }
 
-  window.addEventListener('resize', handleResize);
+  window.addEventListener("resize", handleResize);
 })();
