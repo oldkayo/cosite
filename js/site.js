@@ -117,24 +117,6 @@
       "footer.connect": "Connect",
       "footer.privacy": "Privacy",
       "footer.terms": "Terms",
-      // reviews
-      "reviews.heading": "Student Reviews",
-      "reviews.subtitle":
-        "What our students say about their learning experience",
-      "reviews.addReview": "Share Your Feedback",
-      "reviews.leaveReview": "Leave a Review",
-      "reviews.allReviews": "All Reviews",
-      "reviews.viewAll": "View All Reviews",
-      "reviews.filterAll": "All",
-      "reviews.filter5": "5 Stars",
-      "reviews.filter4": "4+ Stars",
-      "reviews.filter3": "3+ Stars",
-      "reviews.submitForm": "Submit Your Review",
-      "reviews.form.name": "Your Name",
-      "reviews.form.email": "Email (optional)",
-      "reviews.form.rating": "Rating",
-      "reviews.form.message": "Your Review",
-      "reviews.form.submit": "Submit Review",
     },
     ar: {
       "nav.home": "الرئيسية",
@@ -237,23 +219,6 @@
       "footer.connect": "تواصل",
       "footer.privacy": "الخصوصية",
       "footer.terms": "الشروط",
-      // reviews
-      "reviews.heading": "تقييمات الطلاب",
-      "reviews.subtitle": "ما يقوله طلابنا عن تجربتهم التعليمية",
-      "reviews.addReview": "شارك تقييمك",
-      "reviews.leaveReview": "اترك تقييماً",
-      "reviews.allReviews": "جميع التقييمات",
-      "reviews.viewAll": "عرض جميع التقييمات",
-      "reviews.filterAll": "الكل",
-      "reviews.filter5": "5 نجوم",
-      "reviews.filter4": "4 نجوم فما فوق",
-      "reviews.filter3": "3 نجوم فما فوق",
-      "reviews.submitForm": "أرسِل تقييمك",
-      "reviews.form.name": "اسمك",
-      "reviews.form.email": "البريد الإلكتروني (اختياري)",
-      "reviews.form.rating": "التقييم",
-      "reviews.form.message": "تقييمك",
-      "reviews.form.submit": "إرسال التقييم",
       "discord.title": "انضم إلى خادمنا على ديسكورد",
       "discord.subtitle": "انضم لمجتمع التقنيين للدعم، الدورات والمسابقات.",
       "discord.desc": "قنوات نشطة، دعم مباشر، وفعاليات أسبوعية.",
@@ -515,13 +480,32 @@
         feedEl.innerHTML = html;
       }
 
-      // Try to fetch JSON; fallback to built-in sample if that fails
+      // Try to load from ProjectsStorage (localStorage) first
+      if (window.ProjectsStorage) {
+        const projects = window.ProjectsStorage.getProjects();
+        // Filter featured projects or get latest 5
+        const featuredProjects = projects.filter(p => p.featured).slice(0, 5);
+        const projectsToShow = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 5);
+        
+        if (projectsToShow.length > 0) {
+          render(projectsToShow);
+          return;
+        }
+      }
+      
+      // Fallback: Try to fetch JSON
       fetch("data/updates.json")
         .then((r) => {
           if (!r.ok) throw new Error("no data");
           return r.json();
         })
-        .then((data) => render(data))
+        .then((data) => {
+          if (data && data.length > 0) {
+            render(data);
+          } else {
+            throw new Error("empty data");
+          }
+        })
         .catch(() => {
           // fallback: search for a small set of project previews embedded in translations
           const fallback = [

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>لوحة التحكم - ComixDev</title>
+    <link rel="icon" href="../img/logo/comixLogo.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/auth.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="admin-header-content">
+        <div class="admin-brand">
+          <img
+            src="../img/logo/comixLogo.png"
+            alt="ComixDev logo"
+            class="admin-logo"
+          />
+          <span class="admin-title">لوحة التحكم</span>
+        </div>
+        <div class="admin-header-actions">
+          <span id="current-user" class="current-user"></span>
+          <button id="logout-btn" class="btn btn-secondary">تسجيل الخروج</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-container">
+        <div class="admin-sidebar">
+          <nav class="admin-nav">
+            <a href="#members" class="nav-item active" data-section="members">
+              <span>👥</span> إدارة الأعضاء
+            </a>
+            <a href="#add-member" class="nav-item" data-section="add-member">
+              <span>➕</span> إضافة عضو جديد
+            </a>
+            <a href="#permissions" class="nav-item" data-section="permissions">
+              <span>🔐</span> الصلاحيات
+            </a>
+            <a href="#projects" class="nav-item" data-section="projects">
+              <span>📁</span> إدارة المشاريع
+            </a>
+            <a href="#add-project" class="nav-item" data-section="add-project">
+              <span>➕</span> إضافة مشروع جديد
+            </a>
+          </nav>
+        </div>
+
+        <div class="admin-content">
+          <!-- Members Management Section -->
+          <section id="members-section" class="admin-section active">
+            <div class="section-header">
+              <h2>إدارة الأعضاء</h2>
+              <button id="refresh-members" class="btn btn-secondary">
+                تحديث
+              </button>
+            </div>
+
+            <div class="members-table-container">
+              <table class="members-table">
+                <thead>
+                  <tr>
+                    <th>الاسم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>الصلاحيات</th>
+                    <th>تاريخ الإنشاء</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="members-tbody">
+                  <tr>
+                    <td colspan="5" class="loading">جاري التحميل...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Add Member Section -->
+          <section id="add-member-section" class="admin-section">
+            <div class="section-header">
+              <h2>إضافة عضو جديد</h2>
+            </div>
+
+            <form id="add-member-form" class="admin-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="member-name">الاسم الكامل</label>
+                  <input
+                    type="text"
+                    id="member-name"
+                    name="name"
+                    required
+                    placeholder="أدخل الاسم الكامل"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="member-email">البريد الإلكتروني</label>
+                  <input
+                    type="email"
+                    id="member-email"
+                    name="email"
+                    required
+                    placeholder="example@email.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="member-password">كلمة المرور</label>
+                  <input
+                    type="password"
+                    id="member-password"
+                    name="password"
+                    required
+                    placeholder="••••••••"
+                    minlength="6"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="member-role">الصلاحية</label>
+                  <select id="member-role" name="role" required>
+                    <option value="member">عضو عادي</option>
+                    <option value="editor">محرر</option>
+                    <option value="admin">مدير</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>الصلاحيات الإضافية</label>
+                <div class="permissions-checkboxes">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="permissions[]"
+                      value="view_content"
+                    />
+                    <span>عرض المحتوى</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="permissions[]"
+                      value="edit_content"
+                    />
+                    <span>تعديل المحتوى</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="permissions[]"
+                      value="delete_content"
+                    />
+                    <span>حذف المحتوى</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="permissions[]"
+                      value="manage_users"
+                    />
+                    <span>إدارة المستخدمين</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="permissions[]"
+                      value="manage_settings"
+                    />
+                    <span>إدارة الإعدادات</span>
+                  </label>
+                </div>
+              </div>
+
+              <div id="add-member-error" class="error-message" style="display: none;"></div>
+              <div id="add-member-success" class="success-message" style="display: none;"></div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                إضافة عضو
+              </button>
+            </form>
+          </section>
+
+          <!-- Permissions Section -->
+          <section id="permissions-section" class="admin-section">
+            <div class="section-header">
+              <h2>إدارة الصلاحيات</h2>
+            </div>
+
+            <div class="permissions-info">
+              <h3>أنواع الصلاحيات:</h3>
+              <ul class="permissions-list">
+                <li>
+                  <strong>عضو عادي:</strong> يمكنه عرض المحتوى فقط
+                </li>
+                <li>
+                  <strong>محرر:</strong> يمكنه عرض وتعديل المحتوى
+                </li>
+                <li>
+                  <strong>مدير:</strong> جميع الصلاحيات بما فيها إدارة
+                  المستخدمين والإعدادات
+                </li>
+              </ul>
+
+              <h3>الصلاحيات الإضافية:</h3>
+              <ul class="permissions-list">
+                <li><strong>عرض المحتوى:</strong> إمكانية عرض جميع المحتويات</li>
+                <li>
+                  <strong>تعديل المحتوى:</strong> إمكانية تعديل المحتويات
+                  الموجودة
+                </li>
+                <li>
+                  <strong>حذف المحتوى:</strong> إمكانية حذف المحتويات
+                </li>
+                <li>
+                  <strong>إدارة المستخدمين:</strong> إضافة وتعديل وحذف
+                  المستخدمين
+                </li>
+                <li>
+                  <strong>إدارة الإعدادات:</strong> تعديل إعدادات الموقع
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Projects Management Section -->
+          <section id="projects-section" class="admin-section">
+            <div class="section-header">
+              <h2>إدارة المشاريع</h2>
+              <button id="refresh-projects" class="btn btn-secondary">
+                تحديث
+              </button>
+            </div>
+
+            <div class="members-table-container">
+              <table class="members-table">
+                <thead>
+                  <tr>
+                    <th>العنوان (عربي)</th>
+                    <th>العنوان (إنجليزي)</th>
+                    <th>التاريخ</th>
+                    <th>الفئة</th>
+                    <th>مميز</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="projects-tbody">
+                  <tr>
+                    <td colspan="6" class="loading">جاري التحميل...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Add Project Section -->
+          <section id="add-project-section" class="admin-section">
+            <div class="section-header">
+              <h2>إضافة مشروع جديد</h2>
+            </div>
+
+            <form id="add-project-form" class="admin-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="project-title-ar">العنوان (عربي) *</label>
+                  <input
+                    type="text"
+                    id="project-title-ar"
+                    name="title_ar"
+                    required
+                    placeholder="عنوان المشروع بالعربية"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="project-title-en">العنوان (إنجليزي) *</label>
+                  <input
+                    type="text"
+                    id="project-title-en"
+                    name="title_en"
+                    required
+                    placeholder="Project Title in English"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="project-desc-ar">الوصف (عربي) *</label>
+                  <textarea
+                    id="project-desc-ar"
+                    name="desc_ar"
+                    required
+                    placeholder="وصف المشروع بالعربية"
+                    rows="3"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="project-desc-en">الوصف (إنجليزي) *</label>
+                  <textarea
+                    id="project-desc-en"
+                    name="desc_en"
+                    required
+                    placeholder="Project description in English"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="project-date">التاريخ</label>
+                  <input
+                    type="date"
+                    id="project-date"
+                    name="date"
+                    value=""
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="project-category">الفئة</label>
+                  <select id="project-category" name="category">
+                    <option value="general">عام</option>
+                    <option value="web">ويب</option>
+                    <option value="mobile">موبايل</option>
+                    <option value="ai">ذكاء اصطناعي</option>
+                    <option value="design">تصميم</option>
+                    <option value="other">أخرى</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="project-img">رابط الصورة (اختياري)</label>
+                  <input
+                    type="text"
+                    id="project-img"
+                    name="img"
+                    placeholder="img/projects/project1.jpg"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="project-href">رابط المشروع (اختياري)</label>
+                  <input
+                    type="text"
+                    id="project-href"
+                    name="href"
+                    placeholder="ourProjects.html أو رابط خارجي"
+                    value="ourProjects.html"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="project-featured"
+                    name="featured"
+                    value="true"
+                  />
+                  <span>مشروع مميز (يظهر في الصفحة الرئيسية)</span>
+                </label>
+              </div>
+
+              <div id="add-project-error" class="error-message" style="display: none;"></div>
+              <div id="add-project-success" class="success-message" style="display: none;"></div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                إضافة مشروع
+              </button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Edit Member Modal -->
+    <div id="edit-member-modal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="إغلاق">×</button>
+        <h2>تعديل عضو</h2>
+        <form id="edit-member-form" class="admin-form">
+          <input type="hidden" id="edit-member-id" name="id" />
+
+          <div class="form-group">
+            <label for="edit-member-name">الاسم الكامل</label>
+            <input
+              type="text"
+              id="edit-member-name"
+              name="name"
+              required
+              placeholder="أدخل الاسم الكامل"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-member-email">البريد الإلكتروني</label>
+            <input
+              type="email"
+              id="edit-member-email"
+              name="email"
+              required
+              placeholder="example@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-member-password">كلمة المرور (اتركها فارغة للحفاظ على الكلمة الحالية)</label>
+            <input
+              type="password"
+              id="edit-member-password"
+              name="password"
+              placeholder="••••••••"
+              minlength="6"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-member-role">الصلاحية</label>
+            <select id="edit-member-role" name="role" required>
+              <option value="member">عضو عادي</option>
+              <option value="editor">محرر</option>
+              <option value="admin">مدير</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>الصلاحيات الإضافية</label>
+            <div class="permissions-checkboxes" id="edit-permissions-checkboxes">
+              <!-- Will be populated by JS -->
+            </div>
+          </div>
+
+          <div id="edit-member-error" class="error-message" style="display: none;"></div>
+          <div id="edit-member-success" class="success-message" style="display: none;"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-edit">
+              إلغاء
+            </button>
+            <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Project Modal -->
+    <div id="edit-project-modal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="إغلاق">×</button>
+        <h2>تعديل مشروع</h2>
+        <form id="edit-project-form" class="admin-form">
+          <input type="hidden" id="edit-project-id" name="id" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-project-title-ar">العنوان (عربي) *</label>
+              <input
+                type="text"
+                id="edit-project-title-ar"
+                name="title_ar"
+                required
+                placeholder="عنوان المشروع بالعربية"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-project-title-en">العنوان (إنجليزي) *</label>
+              <input
+                type="text"
+                id="edit-project-title-en"
+                name="title_en"
+                required
+                placeholder="Project Title in English"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-project-desc-ar">الوصف (عربي) *</label>
+              <textarea
+                id="edit-project-desc-ar"
+                name="desc_ar"
+                required
+                placeholder="وصف المشروع بالعربية"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-project-desc-en">الوصف (إنجليزي) *</label>
+              <textarea
+                id="edit-project-desc-en"
+                name="desc_en"
+                required
+                placeholder="Project description in English"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-project-date">التاريخ</label>
+              <input
+                type="date"
+                id="edit-project-date"
+                name="date"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-project-category">الفئة</label>
+              <select id="edit-project-category" name="category">
+                <option value="general">عام</option>
+                <option value="web">ويب</option>
+                <option value="mobile">موبايل</option>
+                <option value="ai">ذكاء اصطناعي</option>
+                <option value="design">تصميم</option>
+                <option value="other">أخرى</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-project-img">رابط الصورة</label>
+              <input
+                type="text"
+                id="edit-project-img"
+                name="img"
+                placeholder="img/projects/project1.jpg"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-project-href">رابط المشروع</label>
+              <input
+                type="text"
+                id="edit-project-href"
+                name="href"
+                placeholder="ourProjects.html"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                id="edit-project-featured"
+                name="featured"
+                value="true"
+              />
+              <span>مشروع مميز</span>
+            </label>
+          </div>
+
+          <div id="edit-project-error" class="error-message" style="display: none;"></div>
+          <div id="edit-project-success" class="success-message" style="display: none;"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-edit-project">
+              إلغاء
+            </button>
+            <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/auth-storage.js" defer></script>
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/admin-storage.js" defer></script>
+    <script src="../js/projects-storage.js" defer></script>
+    <script src="../js/admin.js" defer></script>
+    <script src="../js/admin-projects.js" defer></script>
+  </body>
+</html>
+

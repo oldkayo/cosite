@@ -120,14 +120,17 @@
     </header>
 
     <main class="container">
-      <section class="section coming-soon">
-        <h1>Our Projects</h1>
-        <p>
-          We're working on something amazing for you! Our academy is currently
-          under development.
-        </p>
-        <div class="spinner" aria-hidden="true"></div>
-        <p>Stay tuned for exciting projects coming soon!</p>
+      <section class="section projects-section reveal-up">
+        <div class="container">
+          <h1 data-i18n="projects.title">Our Projects</h1>
+          <p class="muted" data-i18n="projects.subtitle">
+            Student-built projects, demos and case studies.
+          </p>
+
+          <div id="projects-container" class="projects-grid">
+            <div class="loading muted">جاري تحميل المشاريع...</div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -222,5 +225,7 @@
     </footer>
 
     <script src="js/site.js" defer></script>
+    <script src="js/projects-storage.js" defer></script>
+    <script src="js/projects-display.js" defer></script>
   </body>
 </html>

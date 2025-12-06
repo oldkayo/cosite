@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Paths</title>
+</head>
+<body>
+    <h1>Path Checker</h1>
+    <div id="info"></div>
+    <script>
+        const info = document.getElementById('info');
+        const paths = {
+            'Current URL': window.location.href,
+            'Pathname': window.location.pathname,
+            'Protocol': window.location.protocol,
+            'Host': window.location.host,
+            'API Path (from login)': 'api/login.php',
+            'API Path (from admin)': '../api/login.php'
+        };
+        
+        let html = '<h2>Current Location Info:</h2><ul>';
+        for (const [key, value] of Object.entries(paths)) {
+            html += `<li><strong>${key}:</strong> ${value}</li>`;
+        }
+        html += '</ul>';
+        
+        // Test API path
+        html += '<h2>Testing API Path:</h2>';
+        html += '<p>Testing: api/login.php</p>';
+        
+        fetch('api/login.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({test: true})
+        })
+        .then(r => {
+            html += `<p>Status: ${r.status}</p>`;
+            return r.text();
+        })
+        .then(text => {
+            html += `<p>Response: ${text.substring(0, 200)}</p>`;
+            info.innerHTML = html;
+        })
+        .catch(err => {
+            html += `<p style="color:red">Error: ${err.message}</p>`;
+            info.innerHTML = html;
+        });
+    </script>
+</body>
+</html>
+
